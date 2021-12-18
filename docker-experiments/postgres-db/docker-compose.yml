@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  pg-test-db:
+    image: postgres:10.5
+    restart: always
+    container_name: pg-test-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5430:5432'
+    volumes:
+      - ./pg-test-db:/var/lib/postgresql/data
