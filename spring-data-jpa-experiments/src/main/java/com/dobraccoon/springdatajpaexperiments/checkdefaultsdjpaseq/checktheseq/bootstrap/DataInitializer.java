@@ -22,24 +22,34 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Book book1 = new Book("Book1");
-        Book savedBook1 = bookRepository.save(book1);
 
-        Book book2 = new Book("Book1");
-        Book savedBook2 = bookRepository.save(book2);
+        for (int i = 0; i < 30; i++) {
+            Book book = new Book("Book" + i);
+            bookRepository.save(book);
+            Author author = new Author("Author" + i);
+            authorRepository.save(author);
+        }
 
-        Author author1 = new Author("Author1");
-        Author savedAuthor1 = authorRepository.save(author1);
+        for (int i = 0; i < 5; i++) {
+            Author author = new Author("Author" + i);
+            authorRepository.save(author);
+        }
 
-        Author author2 = new Author("Author1");
-        Author savedAuthor2 = authorRepository.save(author2);
+        for (int i = 0; i < 30; i++) {
+            Book book = new Book("Book" + i);
+            bookRepository.save(book);
+        }
 
-        System.out.println("savedBookId: " + savedBook1.getId());
-        System.out.println("savedBookId: " + savedBook2.getId());
-        System.out.println("savedAuthorId: " + savedAuthor1.getId());
-        System.out.println("savedAuthorId: " + savedAuthor2.getId());
-        System.out.println("Experiment: By default SDJPA create default sequence " +
-                "and all ids with @GeneratedValue(strategy = GenerationType.SEQUENCE) use it");
+        bookRepository.findAll().forEach(book -> {
+            System.out.println("BookId: " + book.getId());
+        });
 
+        authorRepository.findAll().forEach(author -> {
+            System.out.println("AuthorId: " + author.getId());
+        });
+
+        System.out.println("EXPERIMENT: If set one seq for all entities" +
+                "(@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"seq_one\")), " +
+                "it will generate by some magik logic");
     }
 }

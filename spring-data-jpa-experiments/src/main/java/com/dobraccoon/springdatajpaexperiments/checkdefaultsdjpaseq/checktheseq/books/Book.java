@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_one")
     private Long id;
     private String title;
 
