@@ -25,6 +25,9 @@ public class DataInitializer implements CommandLineRunner {
         Book book1 = new Book("Book1");
         Book savedBook1 = bookRepository.save(book1);
 
+        Book book2 = new Book("Book1");
+        Book savedBook2 = bookRepository.save(book2);
+
         Author author1 = new Author("Author1");
         Author savedAuthor1 = authorRepository.save(author1);
 
@@ -32,10 +35,11 @@ public class DataInitializer implements CommandLineRunner {
         Author savedAuthor2 = authorRepository.save(author2);
 
         System.out.println("savedBookId: " + savedBook1.getId());
+        System.out.println("savedBookId: " + savedBook2.getId());
         System.out.println("savedAuthorId: " + savedAuthor1.getId());
         System.out.println("savedAuthorId: " + savedAuthor2.getId());
         System.out.println("Experiment: By default SDJPA create default sequence " +
-                "and all ids with @GeneratedValue(strategy = GenerationType.AUTO) use it");
+                "and all ids with @GeneratedValue(strategy = GenerationType.SEQUENCE) use it");
 
     }
 }
