@@ -1,4 +1,4 @@
-package com.dobraccoon.springdatajpaexperiments.checkdefaultsdjpaseq.checktheseq.books;
+package com.dobraccoon.springdatajpaexperiments.books;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

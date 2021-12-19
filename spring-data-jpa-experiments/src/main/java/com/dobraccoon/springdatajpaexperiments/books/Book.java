@@ -1,4 +1,4 @@
-package com.dobraccoon.springdatajpaexperiments.checkdefaultsdjpaseq.checktheseq.authors;
+package com.dobraccoon.springdatajpaexperiments.books;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,13 +12,13 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Author {
+public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_one")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOOK_SEQ")
     private Long id;
-    private String name;
+    private String title;
 
-    public Author(String name) {
-        this.name = name;
+    public Book(String title) {
+        this.title = title;
     }
 }
