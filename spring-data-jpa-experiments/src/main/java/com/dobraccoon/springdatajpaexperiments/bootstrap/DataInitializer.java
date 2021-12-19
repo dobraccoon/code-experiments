@@ -23,17 +23,17 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        for (int i = 0; i < 5; i++) {
-//            bookRepository.save(new Book("Book" + i));
-//            authorRepository.save(new Author("Author" + i));
-//        }
-//
-//        bookRepository.findAll().forEach(book -> {
-//            System.out.println("BookId: " + book.getId());
-//        });
-//
-//        authorRepository.findAll().forEach(author -> {
-//            System.out.println("AuthorId: " + author.getId());
-//        });
+        for (int i = 0; i < 5; i++) {
+            bookRepository.save(new Book("Book" + i));
+            authorRepository.save(new Author("Author" + i));
+        }
+
+        bookRepository.findAll().forEach(book -> {
+            System.out.println("BookId: " + book.getId());
+        });
+
+        authorRepository.findAll().forEach(author -> {
+            System.out.println("AuthorId: " + author.getId());
+        });
     }
 }
