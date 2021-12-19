@@ -9,29 +9,18 @@ import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
 class ExperimentDataJpaTest {
 
 	@Autowired
 	private BookRepository bookRepository;
 
-	@Rollback(value = false)
-	@Order(1)
 	@Test
-	void BookRepositoryTest1() {
+	void bookRepositoryTest() {
 		bookRepository.save(new Book(""));
 		long count = bookRepository.count();
 
 		assertThat(count).isEqualTo(1);
-		//After method end all transaction into method will rollback
-	}
-
-	@Order(2)
-	@Test
-	void BookRepositoryTest2() {
-		//That's why this check will fail without @Rollback in previous test
-		assertThat(bookRepository.count()).isEqualTo(1);
 	}
 
 	@Test
