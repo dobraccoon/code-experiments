@@ -27,3 +27,4 @@ hs_err_pid*
 target/
 .DS_Store
 /docker-experiments/pg-test-db/pg-test-db-volumes/
+/docker-experiments/mysql-db/mysql-test-db-volumes/
