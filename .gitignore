@@ -16,6 +16,7 @@
 *.nar
 *.ear
 *.zip
+!datasource-settings.zip
 *.tar.gz
 *.rar
 
