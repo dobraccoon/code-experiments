@@ -9,6 +9,8 @@ services:
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      - custom-network
     ports:
       - '3306:3306'
     expose:
@@ -17,3 +19,6 @@ services:
       - ./mysql-test-db-volumes:/var/lib/mysql
 volumes:
   mysql-test-db:
+networks:
+  custom-network:
+    driver: bridge

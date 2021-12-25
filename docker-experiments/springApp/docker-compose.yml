@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  spring-app:
+    container_name: spring-app
+    build:
+      context: ../../
+      dockerfile: docker-experiments/springApp/Dockerfile
+    image: spring-data-jpa-experiments:latest
+    ports:
+      - 8080:8080
+    networks:
+      - mysql-db_custom-network
+    volumes:
+      - ./spring-app-volumes:/var/lib/spring-app
+volumes:
+  spring-app:
+networks:
+  mysql-db_custom-network:
+    external: true
