@@ -5,10 +5,7 @@ services:
     restart: always
     container_name: mysql-test-db
     environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - compose-custom-network
     ports:
@@ -20,7 +17,8 @@ services:
       timeout: 15s
       retries: 10
     volumes:
-      - ./mysql-test-db-volume:/var/lib/mysql
+      - "./scripts/mysqlinit.sql:/docker-entrypoint-initdb.d/1.sql"
+      - ./volume-mysql-test-db:/var/lib/mysql
   spring-app:
     container_name: spring-app
     build:
@@ -35,7 +33,7 @@ services:
       mysql-test-db:
         condition: service_healthy
     volumes:
-      - ./spring-app-volume:/var/lib/spring-app
+      - ./volume-spring-app:/var/lib/spring-app
 volumes:
   spring-app:
   mysql-test-db:

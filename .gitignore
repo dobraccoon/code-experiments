@@ -27,6 +27,6 @@ hs_err_pid*
 target/
 .DS_Store
 /docker-experiments/pg-test-db/pg-test-db-volumes/
-/docker-experiments/mysql-db/mysql-test-db-volumes/
-/docker-experiments/springApp/spring-app-volumes/
-/docker-experiments/springApp/mysql-test-db-volume/
+/docker-experiments/mysql-db/volume-mysql-test-db/
+/docker-experiments/springApp/volume-spring-app/
+/docker-experiments/springApp/volume-mysql-test-db/

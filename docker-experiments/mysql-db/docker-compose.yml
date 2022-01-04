@@ -5,15 +5,13 @@ services:
     restart: always
     container_name: mysql-test-db
     environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - '3306:3306'
     expose:
       - '3306'
     volumes:
-      - ./mysql-test-db-volumes:/var/lib/mysql
+      - "./scripts/mysqlinit.sql:/docker-entrypoint-initdb.d/1.sql"
+      - ./volume-mysql-test-db:/var/lib/mysql
 volumes:
   mysql-test-db:
