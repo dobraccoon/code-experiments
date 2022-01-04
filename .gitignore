@@ -29,3 +29,4 @@ target/
 /docker-experiments/pg-test-db/pg-test-db-volumes/
 /docker-experiments/mysql-db/mysql-test-db-volumes/
 /docker-experiments/springApp/spring-app-volumes/
+/docker-experiments/springApp/mysql-test-db-volume/

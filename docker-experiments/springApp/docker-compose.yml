@@ -1,5 +1,26 @@
 version: "3.8"
 services:
+  mysql-test-db:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-test-db
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      - compose-custom-network
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 15s
+      retries: 10
+    volumes:
+      - ./mysql-test-db-volume:/var/lib/mysql
   spring-app:
     container_name: spring-app
     build:
@@ -9,11 +30,15 @@ services:
     ports:
       - 8080:8080
     networks:
-      - mysql-db_custom-network
+      - compose-custom-network
+    depends_on:
+      mysql-test-db:
+        condition: service_healthy
     volumes:
-      - ./spring-app-volumes:/var/lib/spring-app
+      - ./spring-app-volume:/var/lib/spring-app
 volumes:
   spring-app:
+  mysql-test-db:
 networks:
-  mysql-db_custom-network:
-    external: true
+  compose-custom-network:
+    driver: bridge
